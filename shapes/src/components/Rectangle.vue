@@ -1,12 +1,12 @@
 <template>
     <div v-highlight class="wrap">
-        <div class="square middle"></div>
+        <div class="rectangle middle" @click="test"></div>
         <pre>
             <code class="css">
-.square {
-    width: 100px;
-    height: 100px;
-    background-color: red;
+.rectangle {
+  width: 200px;
+  height: 100px;
+  background: red;
 }
             </code>
         </pre>
@@ -16,15 +16,20 @@
 
 <script>
     export default {
-        name: "Square"
+        name: "Rectangle",
+        methods: {
+            test(){
+                
+            }
+        },
     }
 </script>
 
 <style scoped lang="scss">
-    .square {
-        width: 100px;
+    .rectangle {
+        width: 200px;
         height: 100px;
-        background-color: red;
+        background: red;
     }
     .wrap {
         display: flex;
