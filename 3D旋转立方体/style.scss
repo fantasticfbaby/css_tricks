@@ -1,0 +1,98 @@
+$cube-size: 300px;
+$cube-radius: $cube-size/2;
+@keyframes autoRotate {
+  // show-front
+  0%,
+  100% {
+    transform: translateZ(-$cube-radius);
+  }
+  // show-back
+  16.5% {
+    transform: translateZ(-$cube-radius) rotateX(-180deg);
+  }
+  // show-left
+  33% {
+    transform: translateZ(-$cube-radius) rotateY(90deg);
+  }
+  // show-right
+  49.5% {
+    transform: translateZ(-$cube-radius) rotateY(-90deg);
+  }
+  // show-top
+  66% {
+    transform: translateZ(-$cube-radius) rotateX(-90deg);
+  }
+  // show-bottom
+  82.5% {
+    transform: translateZ(-$cube-radius) rotateX(90deg);
+  }
+}
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.demo {
+  width: $cube-size;
+  height: $cube-size;
+  perspective: 1000px;
+  position: relative;
+  margin: 30px auto;
+}
+.cube {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: absolute;
+  // transition: transform ease 1s;
+  animation: autoRotate ease 18s alternate infinite;
+  &.show-default {
+    transform: translateZ(-$cube-radius) rotateY(-15deg);
+    // &:hover {
+    //   transform: translateZ(-$cube-radius) rotateY(180deg);
+    // }
+  }
+  &.show-left {
+    transform: translateZ(-$cube-radius) rotateY(90deg);
+  }
+  &-face {
+    border: 2px solid #000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    opacity: 0.9;
+    backface-visibility: visible;
+    video {
+      height: 100%;
+    }
+    &.is-front {
+      transform: translateZ($cube-radius);
+    }
+    &.is-back {
+      transform: rotateX(-180deg) translateZ($cube-radius);
+    }
+    &.is-right {
+      transform: rotateY(90deg) translateZ($cube-radius);
+    }
+    &.is-left {
+      transform: rotateY(-90deg) translateZ($cube-radius);
+    }
+    &.is-top {
+      transform: rotateX(90deg) translateZ($cube-radius);
+    }
+    &.is-bottom {
+      transform: rotateX(-90deg) translateZ($cube-radius);
+    }
+  }
+  img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+.bar {
+    width: 6px;
+    height: 60px;
+    background-color: white;
+    display: inline-block;
+    transform-origin: bottom center;
+    animation: loading 1.5s ease-in-out infinite;
+}
+@keyframes loading {
+    from {
+        transform: scaleY(.1);
+        background-color: #fff;
+    }
+    50% {
+        transform: scaleY(1);
+        background-color: #2eff71;
+    }
+    to {
+        transform: scaleY(.1);
+        background-color: transparent;
+    }
+}
+@for $i from 1 to 9 {
+    .bar#{$i} {
+        animation-delay: ($i*0.1s);
+    }
+}
